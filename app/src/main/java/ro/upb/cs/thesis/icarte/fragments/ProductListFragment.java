@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import ro.upb.cs.thesis.icarte.MainActivity;
+import ro.upb.cs.thesis.icarte.activities.MainActivity;
 import ro.upb.cs.thesis.icarte.R;
 
 /**
