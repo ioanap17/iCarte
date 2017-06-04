@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">iCarte</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="button_cart">Vezi Cosul de Cumparaturi</string>
+    <string name="catalog">Catalog</string>
+    <string name="action_settings">Settings</string>
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Acasa</item>
+        <item>Clasic</item>
+        <item>Contemporan</item>
+        <item>Universal</item>
+        <item>Romana</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@mipmap/ic_home</item>
+        <item>@mipmap/ic_basket</item>
+    </array>
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_product_details">ProductDetailsActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>

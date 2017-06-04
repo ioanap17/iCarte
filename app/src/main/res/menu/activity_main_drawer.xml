@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/ic_home"
+            android:icon="@mipmap/ic_home"
+            android:title="Acasa" />
+        <item
+            android:id="@+id/catalog"
+            android:icon="@mipmap/ic_basket"
+            android:title="Catalog" />
+        <item
+            android:id="@+id/cart"
+            android:icon="@mipmap/ic_basket"
+            android:title="Cos de cumparaturi" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Distribuie" />
+            <item
+                android:id="@+id/login"
+                android:icon="@mipmap/ic_login"
+                android:title="Log in" />
+        </menu>
+    </item>
+
+</menu>

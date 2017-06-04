@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+    <!-- The main content view -->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:background="#e1e1e1">
+
+            <TextView android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:layout_margin="5sp"
+                android:text="@string/catalog">
+            </TextView>
+
+            <ListView android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/ListViewCatalog"
+                android:layout_width="fill_parent"
+                android:background="#ffffff"
+                android:clickable="true"
+                android:cacheColorHint="#ffffff">
+            </ListView>
+
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:layout_gravity="end"
+                android:id="@+id/ButtonViewCart"
+                android:text="@string/button_cart">
+            </Button>
+
+        </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <!-- The navigation drawer -->
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
+
+
+</android.support.v4.widget.DrawerLayout>
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#e1e1e1">
+
+    <TextView android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:layout_margin="5sp"
+        android:text="@string/catalog">
+    </TextView>
+
+    <ListView android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/ListViewCatalog"
+        android:layout_width="fill_parent"
+        android:background="#ffffff"
+        android:clickable="true"
+        android:cacheColorHint="#ffffff">
+    </ListView>
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        android:layout_gravity="end"
+        android:id="@+id/ButtonViewCart"
+        android:text="@string/button_cart">
+    </Button>
+
+</LinearLayout>-->
