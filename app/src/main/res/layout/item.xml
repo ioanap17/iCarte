@@ -1,41 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:id="@+id/LinearLayoutItem">
+    android:id="@+id/RelativeLayoutItem">
 
-    <ImageView android:layout_margin="5dip"
+    <ImageView
         android:id="@+id/ImageViewItem"
-        android:layout_height="wrap_content"
-        android:layout_width="100dip">
-    </ImageView>
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_margin="5dip"
+        android:contentDescription="@string/desc_list_item_icon"
+        android:src="@mipmap/ic_book" />
 
     <TextView
         android:id="@+id/TextViewItem"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="18dp"
         android:layout_margin="5dip"
         android:maxWidth="150dip"
         android:minLines="2"
         android:text="Titlu Carte"
         android:textColor="#000000"
-        android:textSize="26dip"></TextView>
+        android:textSize="15sp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ImageViewItem"
+        android:typeface="sans"/>
 
-    <TextView android:id="@+id/TextView01"
+    <TextView
+        android:id="@+id/textViewAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
-    </TextView>
+        android:layout_alignBaseline="@+id/CheckBoxSelected"
+        android:layout_alignBottom="@+id/CheckBoxSelected"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@+id/TextViewItem"
+        android:layout_toRightOf="@+id/TextViewItem"
+        android:layout_weight="1"
+        android:text="Nume Autor"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
 
-    <CheckBox android:layout_height="wrap_content"
-        android:layout_margin="5dip"
+    <LinearLayout
+        android:id="@+id/cart_plus_minus_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/TextViewItem"
+        android:layout_marginRight="50dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/plist_price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/TextViewItem"
+            android:layout_marginLeft="31dp"
+            android:layout_marginStart="31dp"
+            android:layout_toEndOf="@+id/TextViewItem"
+            android:layout_toRightOf="@+id/ImageViewItem"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="5sp"
+            android:text="Pret"
+            android:textColor="#1d1d1d"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/cart_minus_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_minus" />
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
+            android:text="0"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/cart_plus_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_plus" />
+    </LinearLayout>
+
+    <CheckBox
         android:id="@+id/CheckBoxSelected"
-        android:focusable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:clickable="false"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content">
-    </CheckBox>
+        android:focusable="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"></CheckBox>
 
-</LinearLayout>
+</RelativeLayout>

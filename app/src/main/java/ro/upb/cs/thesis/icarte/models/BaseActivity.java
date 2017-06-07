@@ -15,8 +15,10 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import java.util.ArrayList;
 import ro.upb.cs.thesis.icarte.activities.Catalog;
+import ro.upb.cs.thesis.icarte.activities.LoginActivity;
 import ro.upb.cs.thesis.icarte.activities.MainActivity;
 import ro.upb.cs.thesis.icarte.R;
+import ro.upb.cs.thesis.icarte.activities.RegisterActivity;
 import ro.upb.cs.thesis.icarte.activities.ShoppingCartActivity;
 import ro.upb.cs.thesis.icarte.listadapters.NavDrawerListAdapter;
 
@@ -76,7 +78,7 @@ public class BaseActivity extends AppCompatActivity {
         // enabling action bar app icon and behaving it as toggle button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        // getSupportActionBar().setIcon(R.drawable.ic_drawer);
+        getSupportActionBar().setIcon(R.mipmap.ic_drawer);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.mipmap.ic_drawer,
                 R.string.navigation_drawer_open, // nav drawer open
@@ -150,17 +152,17 @@ public class BaseActivity extends AppCompatActivity {
                 startActivity(intent2);
                 finish();
                 break;
-            /*case 3:
-                Intent intent3 = new Intent(this, fourth.class);
+            case 3:
+                Intent intent3 = new Intent(this, RegisterActivity.class);
                 startActivity(intent3);
                 finish();
                 break;
             case 4:
-                Intent intent4 = new Intent(this, fifth.class);
+                Intent intent4 = new Intent(this, LoginActivity.class);
                 startActivity(intent4);
                 finish();
                 break;
-            case 5:
+            /*case 5:
                 Intent intent5 = new Intent(this, sixth.class);
                 startActivity(intent5);
                 finish();

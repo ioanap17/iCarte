@@ -38,7 +38,7 @@ public class Catalog extends MainActivity {
 
         // Create the list
         ListView listViewCatalog = (ListView) findViewById(R.id.ListViewCatalog);
-        listViewCatalog.setAdapter(new ProductAdapter(mProductList, getLayoutInflater(), false));
+        listViewCatalog.setAdapter(new ProductAdapter(mProductList, getLayoutInflater(), false, false, false));
 
         listViewCatalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

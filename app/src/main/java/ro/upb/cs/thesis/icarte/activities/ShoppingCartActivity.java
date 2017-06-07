@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.List;
 import ro.upb.cs.thesis.icarte.R;
 import ro.upb.cs.thesis.icarte.listadapters.ProductAdapter;
@@ -36,7 +38,12 @@ public class ShoppingCartActivity extends BaseActivity {
 
         set(navMenuTitles,navMenuIcons);
 
-        mCartList = ShoppingCartHelper.getCart();
+        mCartList = ShoppingCartHelper.getCartList();
+
+        if(mCartList.size() == 0){
+            TextView emptyCartTextView = (TextView) findViewById(R.id.emptyCart);
+            emptyCartTextView.setVisibility(View.VISIBLE);
+        }
 
         // Make sure to clear the selections
         for(int i=0; i<mCartList.size(); i++) {
@@ -45,7 +52,7 @@ public class ShoppingCartActivity extends BaseActivity {
 
         // Create the list
         final ListView listViewCatalog = (ListView) findViewById(R.id.ListViewCatalog);
-        mProductAdapter = new ProductAdapter(mCartList, getLayoutInflater(), true);
+        mProductAdapter = new ProductAdapter(mCartList, getLayoutInflater(), true, true, true);
         listViewCatalog.setAdapter(mProductAdapter);
 
         listViewCatalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,7 +68,7 @@ public class ShoppingCartActivity extends BaseActivity {
                     selectedProduct.selected = true;
 
                 mProductAdapter.notifyDataSetInvalidated();
-
+                updatePrice();
             }
         });
 
@@ -74,13 +81,36 @@ public class ShoppingCartActivity extends BaseActivity {
                 for(int i=mCartList.size()-1; i>=0; i--) {
 
                     if(mCartList.get(i).selected) {
+                        ShoppingCartHelper.removeProduct(mCartList.get(i));
                         mCartList.remove(i);
                     }
                 }
                 mProductAdapter.notifyDataSetChanged();
+                updatePrice();
             }
         });
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Refresh the data
+        if(mProductAdapter != null) {
+            mProductAdapter.notifyDataSetChanged();
+        }
+        updatePrice();
+    }
+
+    private void updatePrice(){
+        double subTotal = 0;
+        for(Product p : mCartList) {
+            int quantity = ShoppingCartHelper.getProductQuantity(p);
+            subTotal += p.price * quantity;
+        }
+
+        TextView productPriceTextView = (TextView) findViewById(R.id.TextViewSubtotal);
+        productPriceTextView.setText("Subtotal: " + String.format("%.2f", subTotal) + " RON");
+    }
 }
