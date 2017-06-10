@@ -34,7 +34,7 @@ public class Catalog extends MainActivity {
         set(navMenuTitles, navMenuIcons);
 
         // Obtain a reference to the product catalog
-        List<Product> mProductList = ShoppingCartHelper.getCatalog(getResources());
+        List<Product> mProductList = ShoppingCartHelper.getCatalog(getResources(), getApplicationContext());
 
         // Create the list
         ListView listViewCatalog = (ListView) findViewById(R.id.ListViewCatalog);

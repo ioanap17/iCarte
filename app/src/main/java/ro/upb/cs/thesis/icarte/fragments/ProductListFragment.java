@@ -19,7 +19,7 @@ import ro.upb.cs.thesis.icarte.R;
 public class ProductListFragment extends Fragment {
     private ListView listview;
     MainActivity mainActivity;
-    private String productCategory;
+    private String[] productCategory;
 
     ProgressDialog progessDialog;
 
@@ -36,11 +36,9 @@ public class ProductListFragment extends Fragment {
 
         View rootView = inflater
                 .inflate(R.layout.productlist, container, false);
-        productCategory = mainActivity.getProducts_category();
 
         listview = (ListView) rootView.findViewById(R.id.ListViewCatalog);
 
-        mainActivity.getSupportActionBar().setTitle(productCategory);
         // selecting single ListView item
         ListView lv = listview;
         // listening to single listitem click

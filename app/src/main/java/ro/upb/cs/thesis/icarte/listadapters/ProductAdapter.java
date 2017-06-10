@@ -80,7 +80,7 @@ public class ProductAdapter extends BaseAdapter {
 
         item.productImageView.setImageDrawable(curProduct.productImage);
         item.productTitle.setText(curProduct.title);
-        item.productAuthor.setText(curProduct.author);
+        item.productAuthor.setText("de " + curProduct.author);
         item.productPrice.setText(String.valueOf(curProduct.price) + " RON");
 
         if(!mShowCheckbox) {

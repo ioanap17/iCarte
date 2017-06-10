@@ -23,7 +23,7 @@
             android:textColor="#ffffff"
             android:textStyle="bold" />
         <ListView
-            android:id="@+id/list_slidermenu"
+            android:id="@+id/category_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"

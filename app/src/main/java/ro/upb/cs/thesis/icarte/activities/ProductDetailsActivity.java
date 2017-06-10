@@ -39,7 +39,7 @@ public class ProductDetailsActivity extends BaseActivity {
 
         set(navMenuTitles,navMenuIcons);
 
-        List<Product> catalog = ShoppingCartHelper.getCatalog(getResources());
+        List<Product> catalog = ShoppingCartHelper.getCatalog(getResources(), getApplicationContext());
         final List<Product> cart = ShoppingCartHelper.getCartList();
 
         int productIndex = getIntent().getExtras().getInt(ShoppingCartHelper.PRODUCT_INDEX);
@@ -53,7 +53,7 @@ public class ProductDetailsActivity extends BaseActivity {
         productTitleTextView.setText(selectedProduct.title);
 
         TextView productAuthorTextView = (TextView) findViewById(R.id.authorName);
-        productAuthorTextView.setText(selectedProduct.author);
+        productAuthorTextView.setText("de " + selectedProduct.author);
 
         TextView productDetailsTextView = (TextView) findViewById(R.id.TextViewProductDetails);
         productDetailsTextView.setText(selectedProduct.description);
