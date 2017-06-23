@@ -1,5 +1,6 @@
 package ro.upb.cs.thesis.icarte.activities;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import ro.upb.cs.thesis.icarte.R;
@@ -15,14 +17,12 @@ import ro.upb.cs.thesis.icarte.models.BaseActivity;
 import ro.upb.cs.thesis.icarte.models.Product;
 import ro.upb.cs.thesis.icarte.utils.ShoppingCartHelper;
 
-/**
- * Created by Paun on 03.06.2017.
- */
 
 public class ShoppingCartActivity extends BaseActivity {
 
     private List<Product> mCartList;
     private ProductAdapter mProductAdapter;
+    private double totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +90,25 @@ public class ShoppingCartActivity extends BaseActivity {
             }
         });
 
+        Button checkout = (Button) findViewById(R.id.checkoutButton);
+        if(mCartList.size() == 0)
+            checkout.setVisibility(View.INVISIBLE);
+        else
+            checkout.setVisibility(View.VISIBLE);
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(totalPrice!=0){
+                    Intent intent = new Intent(ShoppingCartActivity.this, PayPalCheckOutActivity.class);
+                    intent.putExtra("TOTAL_PRICE", totalPrice);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(ShoppingCartActivity.this, "Cosul de cumparaturi este gol!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -110,7 +129,9 @@ public class ShoppingCartActivity extends BaseActivity {
             subTotal += p.price * quantity;
         }
 
+        totalPrice = subTotal;
+
         TextView productPriceTextView = (TextView) findViewById(R.id.TextViewSubtotal);
-        productPriceTextView.setText("Subtotal: " + String.format("%.2f", subTotal) + " RON");
+        productPriceTextView.setText("Subtotal: " + String.format("%.2f", totalPrice) + " RON");
     }
 }

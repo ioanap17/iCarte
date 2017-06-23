@@ -1,50 +1,36 @@
 package ro.upb.cs.thesis.icarte.utils;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-
-import ro.upb.cs.thesis.icarte.R;
-import ro.upb.cs.thesis.icarte.activities.RegisterActivity;
-import ro.upb.cs.thesis.icarte.activities.ShoppingCartActivity;
 import ro.upb.cs.thesis.icarte.models.Product;
 import ro.upb.cs.thesis.icarte.models.ShoppingCartEntry;
-
-/**
- * Created by Paun on 03.06.2017.
- */
 
 public class ShoppingCartHelper {
 
     public static final String PRODUCT_INDEX = "PRODUCT_INDEX";
+    public static final String CATEGORY_NAME = "CATEGORY_NAME";
 
-    private static List<Product> catalog;
+    private static ArrayList<Product> catalog;
     private static Map<Product, ShoppingCartEntry> cartMap = new HashMap<Product, ShoppingCartEntry>();
+    private static Map<String, ArrayList<Product>> categoryMap = new HashMap<>();
 
-    public static List<Product> getCatalog(final Resources res, final Context context){
+    public static ArrayList<Product> getCatalog(final Resources res, final Context context){
         if(catalog == null) {
-            catalog = new Vector<Product>();
+            catalog = new ArrayList<Product>();
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
                 @Override
@@ -60,8 +46,20 @@ public class ShoppingCartHelper {
                             String descriere = jsonObject.getString("descriere");
                             double pret = jsonObject.getDouble("pret");
                             String categorii = jsonObject.getString("categorii");
+
+                            Product currentProduct = new Product(titlu, autor, getImage(context, res, imagine), descriere, pret);
+                            catalog.add(currentProduct);
+
                             String[] listaCategorii = categorii.split(" ");
-                            catalog.add(new Product(titlu, autor, getImage(context, res, imagine), descriere, pret, listaCategorii));
+                            for(int j = 0; j < listaCategorii.length; j++){
+                                if(categoryMap.containsKey(listaCategorii[j])){
+                                    categoryMap.get(listaCategorii[j]).add(currentProduct);
+                                }else{
+                                    ArrayList<Product> currentList = new ArrayList();
+                                    currentList.add(currentProduct);
+                                    categoryMap.put(listaCategorii[j], currentList);
+                                }
+                            }
                         }
 
                     } catch (JSONException e) {
@@ -127,5 +125,9 @@ public class ShoppingCartHelper {
 
     public static Drawable getImage(Context c, Resources res, String ImageName) {
         return res.getDrawable(res.getIdentifier(ImageName, "mipmap", c.getPackageName()));
+    }
+
+    public static ArrayList<Product> getCategoryList(String categorie){
+        return categoryMap.get(categorie);
     }
 }

@@ -39,10 +39,18 @@ public class ProductDetailsActivity extends BaseActivity {
 
         set(navMenuTitles,navMenuIcons);
 
-        List<Product> catalog = ShoppingCartHelper.getCatalog(getResources(), getApplicationContext());
+        List<Product> catalog;
         final List<Product> cart = ShoppingCartHelper.getCartList();
 
         int productIndex = getIntent().getExtras().getInt(ShoppingCartHelper.PRODUCT_INDEX);
+
+        String categoryName;
+        if(getIntent().hasExtra(ShoppingCartHelper.CATEGORY_NAME)) {
+            categoryName = getIntent().getExtras().getString(ShoppingCartHelper.CATEGORY_NAME);
+            catalog = ShoppingCartHelper.getCategoryList(categoryName);
+        }else
+            catalog = ShoppingCartHelper.getCatalog(getResources(), getApplicationContext());
+
         final Product selectedProduct = catalog.get(productIndex);
 
         // Set the proper image and text
@@ -61,42 +69,11 @@ public class ProductDetailsActivity extends BaseActivity {
         TextView productPriceTextView = (TextView) findViewById(R.id.TextViewProductPrice);
         productPriceTextView.setText(selectedProduct.price +" RON");
 
-        /*// Update the current quantity in the cart
-        TextView textViewCurrentQuantity = (TextView) findViewById(R.id.textViewCurrentlyInCart);
-        textViewCurrentQuantity.setText("Currently in Cart: "
-                + ShoppingCartHelper.getProductQuantity(selectedProduct));
-
-        // Save a reference to the quantity edit text
-        final EditText editTextQuantity = (EditText) findViewById(R.id.editTextQuantity);*/
-
         Button addToCartButton = (Button) findViewById(R.id.ButtonAddToCart);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                // Check to see that a valid quantity was entered
-                /*int quantity = 0;
-                try {
-                    quantity = Integer.parseInt(editTextQuantity.getText().toString());
-
-                    if (quantity < 0) {
-                        Toast.makeText(getBaseContext(),
-                                "Please enter a quantity of 0 or higher",
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                } catch (Exception e) {
-                    Toast.makeText(getBaseContext(),
-                            "Please enter a numeric quantity",
-                            Toast.LENGTH_SHORT).show();
-
-                    return;
-                }
-
-                // If we make it here, a valid quantity was entered
-                ShoppingCartHelper.setQuantity(selectedProduct, quantity);*/
 
                 //Add product to cart if the item is not in the cart already
                 if(!cart.contains(selectedProduct)) {

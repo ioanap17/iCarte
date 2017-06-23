@@ -1,5 +1,6 @@
 package ro.upb.cs.thesis.icarte.activities;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
@@ -42,6 +43,9 @@ public class MainActivity extends BaseActivity{
         categories.add("DRAGOSTE");
         categories.add("FICTIUNE");
 
+        // Obtain a reference to the product catalog
+        List<Product> mProductList = ShoppingCartHelper.getCatalog(getResources(), getApplicationContext());
+
         CategoryAdapter categoryAdapter = new CategoryAdapter(categories, getLayoutInflater(), getApplicationContext());
 
         ListView categoryList = (ListView) findViewById(R.id.category_list);
@@ -49,13 +53,22 @@ public class MainActivity extends BaseActivity{
         categoryList.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                intent.putExtra("category", categories.get(position));
+                startActivity(intent);
+                finish();
             }
         });
+    }
 
+    ArrayList<String> getCategoryList(){
+        return categories;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         // Obtain a reference to the product catalog
         List<Product> mProductList = ShoppingCartHelper.getCatalog(getResources(), getApplicationContext());
     }
-
-
 }

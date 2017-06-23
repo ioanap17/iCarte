@@ -153,16 +153,16 @@ public class BaseActivity extends AppCompatActivity {
                 finish();
                 break;
             case 3:
-                Intent intent3 = new Intent(this, RegisterActivity.class);
+                Intent intent3 = new Intent(this, LoginActivity.class);
                 startActivity(intent3);
                 finish();
                 break;
-            case 4:
+            /*case 4:
                 Intent intent4 = new Intent(this, LoginActivity.class);
                 startActivity(intent4);
                 finish();
                 break;
-            /*case 5:
+            case 5:
                 Intent intent5 = new Intent(this, sixth.class);
                 startActivity(intent5);
                 finish();

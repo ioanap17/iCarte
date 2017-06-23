@@ -1,6 +1,8 @@
 package ro.upb.cs.thesis.icarte.activities;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,14 +18,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import ro.upb.cs.thesis.icarte.R;
+import ro.upb.cs.thesis.icarte.models.BaseActivity;
 import ro.upb.cs.thesis.icarte.utils.RegisterRequest;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        String[] navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+
+        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+
+        set(navMenuTitles, navMenuIcons);
 
         final EditText etFirstName = (EditText) findViewById(R.id.first_name);
         final EditText etFamilyName = (EditText) findViewById(R.id.fam_name);
@@ -63,8 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                             if(success){
                                 Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
-                                //Intent intent = new Intent(RegisterActivity.this, Authentication.class);
-                                //startActivity(intent);
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(intent);
                                 RegisterActivity.this.finish();
                             }else{
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -87,8 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
         bCancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //Intent intent = new Intent(RegisterActivity.this, Authentication.class);
-                //startActivity(intent);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
                 RegisterActivity.this.finish();
             }
         });

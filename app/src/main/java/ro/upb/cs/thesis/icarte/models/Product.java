@@ -10,17 +10,12 @@ public class Product {
     public String description;
     public double price;
     public boolean selected;
-    public ArrayList<String> categorii;
 
-    public Product(String title, String author, Drawable productImage, String description, double price, String[] listaCategorii) {
+    public Product(String title, String author, Drawable productImage, String description, double price) {
         this.title = title;
         this.author = author;
         this.productImage = productImage;
         this.description = description;
         this.price = price;
-        this.categorii = new ArrayList<String>();
-        for(int i = 0; i < listaCategorii.length; i++){
-            this.categorii.add(listaCategorii[i]);
-        }
     }
 }

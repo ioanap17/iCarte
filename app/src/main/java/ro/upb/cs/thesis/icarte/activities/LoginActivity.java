@@ -2,6 +2,7 @@ package ro.upb.cs.thesis.icarte.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +17,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import ro.upb.cs.thesis.icarte.R;
+import ro.upb.cs.thesis.icarte.models.BaseActivity;
 import ro.upb.cs.thesis.icarte.utils.LoginRequest;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     Button btn, btn2;
 
@@ -26,6 +28,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        String[] navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+
+        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+
+        set(navMenuTitles, navMenuIcons);
 
         final EditText etUsername = (EditText) findViewById(R.id.user_field);
         final EditText etPassword = (EditText) findViewById(R.id.pass_field);

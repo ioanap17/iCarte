@@ -67,10 +67,10 @@
                     android:text="Sterge"/>
 
                 <Button
-                    android:id="@+id/Button02"
+                    android:id="@+id/checkoutButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pasul Urmator"/>
+                    android:text="Pasul Urmator" />
             </LinearLayout>
 
         </LinearLayout>
