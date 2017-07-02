@@ -35,6 +35,7 @@ import ro.upb.cs.thesis.icarte.models.BaseActivity;
 import ro.upb.cs.thesis.icarte.utils.GSONRequest;
 import ro.upb.cs.thesis.icarte.utils.PaymentResponseObject;
 import ro.upb.cs.thesis.icarte.utils.ServerObject;
+import ro.upb.cs.thesis.icarte.utils.ShoppingCartHelper;
 import ro.upb.cs.thesis.icarte.utils.VolleySingleton;
 
 public class PayPalCheckOutActivity extends BaseActivity {
@@ -145,6 +146,7 @@ public class PayPalCheckOutActivity extends BaseActivity {
                     Log.d(TAG, "Json Response " + response.getSuccess());
                     if(!TextUtils.isEmpty(response.getSuccess())){
                         Toast.makeText(PayPalCheckOutActivity.this, "Plata a fost efectuata cu succes!", Toast.LENGTH_LONG).show();
+                        ShoppingCartHelper.clearCart();
                     }else{
                         Toast.makeText(PayPalCheckOutActivity.this, "SERVER ERROR", Toast.LENGTH_LONG).show();
                     }

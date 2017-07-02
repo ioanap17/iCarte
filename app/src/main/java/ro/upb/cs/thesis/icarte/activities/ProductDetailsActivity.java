@@ -1,6 +1,9 @@
 package ro.upb.cs.thesis.icarte.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
@@ -69,6 +72,14 @@ public class ProductDetailsActivity extends BaseActivity {
         TextView productPriceTextView = (TextView) findViewById(R.id.TextViewProductPrice);
         productPriceTextView.setText(selectedProduct.price +" RON");
 
+        Button backButton = (Button) findViewById(R.id.button_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         Button addToCartButton = (Button) findViewById(R.id.ButtonAddToCart);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
 
@@ -83,8 +94,29 @@ public class ProductDetailsActivity extends BaseActivity {
                     int quantity = ShoppingCartHelper.getProductQuantity(selectedProduct) + 1;
                     ShoppingCartHelper.setQuantity(selectedProduct, quantity);
                 }
-                // Close the activity
-                finish();
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(ProductDetailsActivity.this);
+
+                builder.setMessage("Doriti sa continuati cumparaturile?");
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        finish();
+                    }
+                });
+                builder.setNeutralButton("Mergi la cosul de cumparaturi", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked NO button
+                        Intent intent = new Intent(ProductDetailsActivity.this, ShoppingCartActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

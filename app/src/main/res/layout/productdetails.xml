@@ -26,8 +26,8 @@
 
                 <ImageView
                     android:id="@+id/ImageViewProduct"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_margin="5dip"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
@@ -81,13 +81,28 @@
                 android:textColor="#000000"
                 android:text="Product description"/>
 
-            <Button
-                android:id="@+id/ButtonAddToCart"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_margin="5dip"
-                android:text="Adauga in Cos"/>
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_margin="5dip"
+                    android:layout_weight="1"
+                    android:text="Inapoi" />
+
+                <Button
+                    android:id="@+id/ButtonAddToCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:layout_weight="1"
+                    android:text="Adauga in Cos" />
+            </LinearLayout>
 
         </LinearLayout>
     </FrameLayout>

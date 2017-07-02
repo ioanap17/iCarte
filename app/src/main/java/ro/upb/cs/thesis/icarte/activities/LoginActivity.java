@@ -55,9 +55,8 @@ public class LoginActivity extends BaseActivity {
                             boolean success = jsonObject.getBoolean("success");
 
                             if(success){
-                                //String username = jsonObject.getString("username");
-                                //ShoppingCartActivity.loggedUser = username;
-                                //ShoppingCartActivity.loggedIn = true;
+                                String username = etUsername.getText().toString();
+                                ShoppingCartActivity.loggedUser = username;
 
                                 Intent intent = new Intent(LoginActivity.this, ShoppingCartActivity.class);
                                 startActivity(intent);
@@ -90,4 +89,5 @@ public class LoginActivity extends BaseActivity {
         });
 
     }
+
 }

@@ -1,5 +1,7 @@
 package ro.upb.cs.thesis.icarte.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ public class ShoppingCartActivity extends BaseActivity {
     private List<Product> mCartList;
     private ProductAdapter mProductAdapter;
     private double totalPrice;
+    public static String loggedUser = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,7 @@ public class ShoppingCartActivity extends BaseActivity {
             }
         });
 
+
         Button checkout = (Button) findViewById(R.id.checkoutButton);
         if(mCartList.size() == 0)
             checkout.setVisibility(View.INVISIBLE);
@@ -98,13 +102,37 @@ public class ShoppingCartActivity extends BaseActivity {
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(totalPrice!=0){
+                if(totalPrice!=0 && !loggedUser.equals("")){
                     Intent intent = new Intent(ShoppingCartActivity.this, PayPalCheckOutActivity.class);
                     intent.putExtra("TOTAL_PRICE", totalPrice);
                     startActivity(intent);
                     finish();
-                }else{
+                }
+                if(totalPrice == 0){
                     Toast.makeText(ShoppingCartActivity.this, "Cosul de cumparaturi este gol!", Toast.LENGTH_LONG).show();
+                }
+                if(loggedUser.equals("")){
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCartActivity.this);
+
+                    builder.setMessage("Pentru a plasa o comanda trebuie sa fiti autentificat!")
+                            .setTitle("Eroare");
+
+                    builder.setPositiveButton("Autentificare", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User clicked Log In button
+                            Intent intent = new Intent(ShoppingCartActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("Anulare", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             }
         });

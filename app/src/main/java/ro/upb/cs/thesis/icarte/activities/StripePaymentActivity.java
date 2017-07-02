@@ -27,6 +27,7 @@ import java.util.StringTokenizer;
 import java.util.concurrent.Executor;
 
 import ro.upb.cs.thesis.icarte.R;
+import ro.upb.cs.thesis.icarte.utils.ShoppingCartHelper;
 
 import static java.security.AccessController.getContext;
 
@@ -69,6 +70,7 @@ public class StripePaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(StripePaymentActivity.this, "Plata efectuata cu succes!", Toast.LENGTH_LONG).show();
+                ShoppingCartHelper.clearCart();
                 Intent intent = new Intent(StripePaymentActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();

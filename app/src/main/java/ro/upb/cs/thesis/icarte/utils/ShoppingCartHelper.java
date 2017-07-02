@@ -114,6 +114,8 @@ public class ShoppingCartHelper {
         cartMap.remove(product);
     }
 
+    public static void clearCart() { cartMap.clear();}
+
     public static List<Product> getCartList() {
         List<Product> cartList = new Vector<Product>(cartMap.keySet().size());
         for(Product p : cartMap.keySet()) {
